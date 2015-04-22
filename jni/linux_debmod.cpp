@@ -27,12 +27,12 @@
 #include "consts.h"
 #include "linux_debmod.h"
 
-#ifdef __ANDROID__
+//#ifdef __ANDROID__
 #  include "android.hpp"
 #  include "android.cpp"
-#else
-#  include <link.h>
-#endif
+//#else
+//#  include <link.h>
+//#endif
 
 #ifdef __ARM__
 #define user_regs_struct user_regs
@@ -3040,3 +3040,20 @@ debmod_t *create_debug_session()
 {
   return new linux_debmod_t();
 }
+
+#ifdef __ANDROID__
+// android reports simple library names without path. try to find it.
+void linux_debmod_t::find_android_lib(ea_t base, char *lib, size_t bufsize)
+{
+
+}
+
+bool linux_debmod_t::add_android_shlib_bpt(const meminfo_vec_t &miv, bool attaching)
+{
+	return false;
+}
+
+#endif
+
+
+

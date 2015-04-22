@@ -6,6 +6,13 @@
 
 bool under_debugger;
 
+bool __fastcall is_32bit_thumb_insn(unsigned short a1)
+{
+	return (unsigned int) ((a1 >> 11) - 29) <= 2;
+}
+
+
+
 idaman THREAD_SAFE uchar *ida_export pack_dd(uchar *ptr, uchar *end, uint32 x) {
 	return NULL;
 }
